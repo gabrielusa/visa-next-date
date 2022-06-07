@@ -1,0 +1,23 @@
+
+{
+    "name": "visa-next-date",
+    "description": "extensão feita para simplificar o processo de procurar datas próximas para fazer o visto",
+    "version": "1.0",
+    "manifest_version": 3,
+    "author": "Gabriel Senna",
+    "icons": {
+        "128": "128.png"
+        },
+
+    "content_scripts":[{
+        "matches":["https://ais.usvisa-info.com/*"],
+        "js":["content.js"]
+    }],
+
+    "permissions": [
+        "webRequest",
+        "tabs",
+        "clipboardWrite",
+        "clipboardRead"
+    ]
+  }
