@@ -14,7 +14,9 @@ setInterval(async() => {
     // console.log("url:", url_atual)
 
     if(url_atual == url_pay){
-        // location.reload();
+        location.reload();
+        await sleep(1000);
+
         var email = window.localStorage.getItem('email');
         var senha =  window.localStorage.getItem('senha');
 
@@ -89,7 +91,7 @@ setInterval(async() => {
         }}
         console.log(' ');
 
-}, 4500);
+}, 31000);
 
 
 function lerData(data) {
@@ -146,11 +148,7 @@ function comparaData(data){
     var diaMarcado = window.localStorage.getItem('diaMarcado');
     var mesMarcado = window.localStorage.getItem('mesMarcado');
     var anoMarcado = window.localStorage.getItem('anoMarcado');
-
-    console.log("DEBUG, dia mes ano: ", dia, mes, ano )
-    console.log("DEBUG marcados, dia mes ano: ", diaMarcado, mesMarcado, anoMarcado )
     
-    // console.log("dia: ", dia, "mes: ", mes, "ano", ano);
 
     if(anoMarcado < ano){
         console.log("Ano superior")
