@@ -19,5 +19,11 @@
         "tabs",
         "clipboardWrite",
         "clipboardRead"
-    ]
+    ],
+
+    "action": {
+        "default_icon": "128.png",
+        "default_title": "Visa Next Date by GadoBiel",   
+        "default_popup": "index.html" 
+      }
   }
