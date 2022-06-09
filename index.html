@@ -20,35 +20,84 @@
             Seja notificado com as melhores datas para o seu agendamento.
         </span>
 
-        <div class="email-senha">
-            <div class="email">
+        <div class="dados">
+
+
+            <div class="esqueda">
                 <span class="text">email:</span>
-                <input id="email" >
-            </div>
-            <div class="senha">
                 <span class="text">senha:</span>
-                <input id="senha" >
+                <span class="text">data:</span>
             </div>
+    
+            <div class="centro">
+
+                <input id="email" class="escreva">
+                <input id="senha" class="escreva" >
+
+                <div class="datas escreva">
+                    <div class="data">
+                        <input id="date-dia" placeholder="dia">
+                    </div>
+                    <div class="data">
+                        <input id="date-mes" placeholder="mes">
+                    </div>
+                    <div class="data">
+                        <input id="date-ano" placeholder="ano">
+                    </div>
+                </div>
+
+            </div>
+    
+            <div class="direita">
+                <button id="btn btn-email">ok</button>
+                <button id="btn btn-senha">ok</button>
+                <button  class="btn btn-date" id="btn-date">ok</button>
+    
+            </div>
+
+            
         </div>
 
-        <div class="datas">
-            <div class="data">
-                <span class="text">dia:</span>
-                <input id="date" type="date">
-            </div>
-            
-            <!-- <div class="data">
-                <span class="text">mes:</span>
-                <input id="mes" >
-            </div>
-            <div class="data">
-                <span class="text">ano:</span>
-                <input id="ano" >
-            </div> -->
-        </div>
+
+        <span class="subtext" id="subtext">
+            Os dados ficam só na URL em que foi salvo.
+        </span>
+
 
     </div>
 
+    <script>
+        let btnEmail = document.getElementById('btn-email');
+        let email = document.getElementById('email');
+        let btnSenha = document.getElementById('btn-senha');
+        let senha = document.getElementById('senha');
 
+        email.value = window.localStorage.getItem('email');
+        senha.value = window.localStorage.getItem('password');
+        subtextStyle = document.getElementById('subtext').style;
+
+        if(email.value == ''){
+            email.value = "nenhum email associado nesta página";
+            console.log('oi')
+            subtextStyle.display = "none";
+        }
+        if(senha.value == ''){
+            senha.value = "nenhum email associado nesta página"
+        }
+
+        if(email.value ==! "nenhum email associado nesta página" || email.value ==! '' ){
+            subtextStyle.display = "block";
+        }
+
+        btnEmail.onclick = () => {
+            window.localStorage.setItem('email', document.querySelector('#email').value);
+            document.querySelector('#email').value = window.localStorage.getItem('email');
+        }
+
+        btnSenha.onclick = () => {
+            window.localStorage.setItem('password', document.querySelector('#senha').value);
+            document.querySelector('#senha').value = window.localStorage.getItem('password');
+        }
+    </script>
 </body>
 </html>

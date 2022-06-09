@@ -5,12 +5,19 @@ function sleep(ms) {
 	return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+
+
+
+
 setInterval(async() => {
     var url_atual = window.location.href;
     var url_login = 'https://ais.usvisa-info.com/pt-br/niv/users/sign_in';
     var url_pay = 'https://ais.usvisa-info.com/pt-br/niv/schedule/39962141/payment';
     var url_agenda = 'https://ais.usvisa-info.com/pt-br/niv/schedule/39894926/appointment';
 
+
+    document.querySelector('#email').value = window.localStorage.getItem('email');
+    document.querySelector('#senha').value = localStorage.getItem('password');
     // await window.location.reload();
 
     
