@@ -10,27 +10,34 @@
 </head>
 <body>
     <div class="pop-up">
-        <span class="title">
-            Visa Next Date 🇺🇸
-        </span> </br>
+         <!--    HEADER SECTION   -->
+        <div class="title">
+            <span>
+                Visa Next Date
+            </span>
+            <img alt="bandeira" src="United_States_clip_art.svg" width="24px"/>
+        </div>
+         
         <span class="text">
             Seja notificado com as melhores datas para o seu agendamento.
         </span>
+            <!--    //HEADER SECTION   -->
 
+            <!--    LOGIN SECTION   -->
         <div class="linha">
-            <span class="text">email:</span>
+            <span class="text left">Seu e-mail:</span>
             <input id="email" class="escreva" placeholder="digite seu email">
             <button class="btn" id="btn-email">ok</button>
         </div>
 
         <div class="linha">
-            <span class="text">senha:</span>
+            <span class="text left">Sua senha:</span>
             <input id="senha" class="escreva" placeholder="digite sua senha">
             <button class="btn" id="btn-senha">ok</button>
         </div>
 
         <div class="linha">
-            <span class="text">data:</span>
+            <span class="text left">Data marcada:</span>
             <div class="datas escreva">
                 <div class="data">
                     <input id="date-dia" placeholder="dia">
@@ -42,68 +49,85 @@
                     <input id="date-ano" placeholder="ano">
                 </div>
             </div>
-            <button class="btn btn-date" id="btn-date">ok</button>
+            <button class="btn" id="btn-date">ok</button>
+        </div>
+            <!--    //LOGIN SECTION   -->
+
+            <!--    DATES SECTION   -->
+        <div class="colunas">
+
+                <!--    DATES LEFT SECTION   -->
+            <div class="coluna1">
+                <div class="linha">
+                    <span class="text">Ultima data:</span>
+                    <span class="text-info" id="ultima-data">xx-xx-xxxx</span>
+                </div>
+        
+                <div class="linha">
+                    <span class="text">1° data boa:</span>
+                    <span class="text-info" id="melhor-data">xx-xx-xxxx</span>
+                </div>
+        
+                <div class="linha">
+                    <span class="text">2° data boa:</span>
+                    <span class="text-info" id="melhor-data">xx-xx-xxxx</span>
+                </div>
+        
+                <div class="linha">
+                    <span class="text">3° data boa:</span>
+                    <span class="text-info" id="melhor-data">xx-xx-xxxx</span>
+                </div>
+            </div>
+
+                <!--    DATES RIGTH SECTION   -->
+            <div class="coluna2">
+                <div class="linha">
+                    <span class="text">delay:</span>
+                    <div class="data2">
+                        <input id="date-dia" placeholder="segundos">
+                    </div>
+                    <button  class="btn2" id="btn-date">ok</button>
+
+                </div>
+        
+                <div class="linha">
+                    <span class="text">Bloq</span>
+                    <div class="datas2 escreva">
+                        <div class="data2">
+                            <input id="date-dia" placeholder="dia">
+                        </div>
+                        <div class="data2">
+                            <input id="date-mes" placeholder="mes">
+                        </div>
+                        <div class="data2">
+                            <input id="date-ano" placeholder="ano">
+                        </div>
+                    </div>
+                    <button class="btn2" id="btn-date">ok</button>
+                </div>
+
+            </div>
         </div>
 
-        <div class="linha">
-            <span class="text">Ultima data:</span>
-            <span class="text-info" id="ultima-data">xx-xx-xxxx</span>
+        <button class="btn2" id="btnReload">reload data</button>
+        <div class="flex">
+            <a class="text azul-link" href="https://ais.usvisa-info.com/pt-br/niv/">https://ais.usvisa-info.com/pt-br/niv/</a>
+            <img alt="redirect" src="export.png" width="10px"/>
         </div>
-
-        <div class="linha">
-            <span class="text">melhor data:</span>
-            <span class="text-info" id="melhor-data">xx-xx-xxxx</span>
-        </div>
-
+            <!--    //DATES SECTION   -->
+        
+            <!--    FOOTER SECTION   -->
         <div class="footer" >
             <span class="subtext" id="subtext">
-                Os dados ficam só na URL em que foi salvo.
+                *Os dados são salvos apenas no seu navegador. Não há backups.
             </span>
         </div>
-
+            <!--    //FOOTER SECTION   -->
 
     </div>
 
-    <script>
-        let btnEmail = document.getElementById('btn-email');
-        let email = document.getElementById('email');
-        let btnSenha = document.getElementById('btn-senha');
-        let senha = document.getElementById('senha');
-        var subtextStyle = document.getElementById('subtext').style;
-        let btnDate = document.getElementById('btn-date');
+<script src="java.js">
+</script>
 
-
-        // setando valores locais já salvos
-        email.value = window.localStorage.getItem('email');
-        senha.value = window.localStorage.getItem('password');
-        document.querySelector('#date-dia').value = window.localStorage.getItem('diaMarcado');
-        document.querySelector('#date-mes').value = window.localStorage.getItem('mesMarcado');
-        document.querySelector('#date-ano').value = window.localStorage.getItem('anoMarcado');
-
-
-        btnEmail.onclick = () => {
-            window.localStorage.setItem('email', document.querySelector('#email').value);
-            document.querySelector('#email').value = window.localStorage.getItem('email');
-            console.log("Um novo valor de email foi associado a esta url")
-        }
-
-        btnSenha.onclick = () => {
-            window.localStorage.setItem('password', document.querySelector('#senha').value);
-            document.querySelector('#senha').value = window.localStorage.getItem('password');
-            console.log("Um novo valor de senha foi associado a esta url")
-        }
-
-        btnDate.onclick = () => {
-            window.localStorage.setItem('diaMarcado', document.querySelector('#date-dia').value);
-            window.localStorage.setItem('mesMarcado', document.querySelector('#date-mes').value);
-            window.localStorage.setItem('anoMarcado', document.querySelector('#date-ano').value);
-        }
-
-
-
-
-
-
-    </script>
 </body>
 </html>

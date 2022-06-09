@@ -1,19 +1,68 @@
+body{
+    background-color: #666;
+}
+
 .pop-up{
     background-color: #f4f4f4;
-    border: 8px solid #666;
-    width: 300px;
+    /* border: 8px solid #666; */
+    width: 450px;
     text-align: center;
 }
 
 .title{
 font-size: 18px;
+align-items: center;
+padding: 10px;
+}
+
+.linha{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
 }
 
 .text{
-    left: 0;
+
     font-size: 14px;
     color: #666;
 }
+
+.left{
+    position: absolute;
+    left: 10px;
+
+}
+.escreva{
+    width: 175px;
+}
+
+.btn{
+    position: absolute;
+    cursor: pointer;
+    right: 15px;
+    width: 35px;
+    border: none;
+    background-color: #666;
+    color: white;
+}
+
+.btn:hover{
+    background-color: black;
+}
+
+.btn2{
+    cursor: pointer;
+    width: 35px;
+    border: none;
+    background-color: #666;
+    color: white;
+}
+
+.btn2:hover{
+    background-color: black;
+}
+
 
 .footer{
     width: 100%;
@@ -35,11 +84,21 @@ font-size: 18px;
     padding-left: 25px;
     display: flex;
     width: 100%;
+    justify-content: center;
+}
+.datas2{
+    display: flex;
+    width: 100%;
+    justify-content: center;
 }
 
 .data input{
+    width: 50px;
+    margin-right: 15px;
+}
+.data2 input{
     width: 30px;
-    margin-right: 10px;
+    margin-right: 5px;
 }
 
 .dados{
@@ -54,12 +113,30 @@ font-size: 18px;
     font-size: 12px;
 }
 
-.escreva{
-    width: 175px;
+.colunas{
+    display: flex;
 }
 
-.linha{
-    display: flex;
-    justify-content: center;
-    padding-top: 10px;
+.coluna1, .coluna2{
+    align-items: center;
+    margin: 10px;
+    width: 50%;
+}
+
+.coluna1{
+    border-right: 1px solid #666; 
+}
+
+.coluna2{
+    border-left: 1px solid #666;
+    padding-left: 10px;
+
+}
+
+.azul-link{
+    color: #3483fa;
+}
+
+.azul-link:hover{
+    color: #3b34fa;
 }

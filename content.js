@@ -1,12 +1,8 @@
-
 Notification.requestPermission(/* opcional: callback */);
 
 function sleep(ms) {
 	return new Promise(resolve => setTimeout(resolve, ms));
 }
-
-
-
 
 
 setInterval(async() => {
@@ -15,14 +11,9 @@ setInterval(async() => {
     var url_pay = 'https://ais.usvisa-info.com/pt-br/niv/schedule/39962141/payment';
     var url_agenda = 'https://ais.usvisa-info.com/pt-br/niv/schedule/39894926/appointment';
 
-
-    document.querySelector('#email').value = window.localStorage.getItem('email');
-    document.querySelector('#senha').value = localStorage.getItem('password');
     // await window.location.reload();
+    // console.log("url:", url_atual);
 
-    
-
-    // console.log("url:", url_atual)
 
     if(url_atual == url_pay){
 
@@ -30,7 +21,7 @@ setInterval(async() => {
         var ultimaDataVista = window.localStorage.getItem('ultimaDataVista');
         var texto = "próxima data: " + proximaData;
 
-        console.log("ultimaDataVista:", ultimaDataVista )
+        console.log("ultimaDataVista:", ultimaDataVista );
         console.log("proximaData:",proximaData);
 
         window.localStorage.setItem('ultimaDataVista', proximaData);
@@ -54,7 +45,8 @@ setInterval(async() => {
     }
 
     else if(url_atual == url_agenda){
-        console.log("debug1")
+        
+        // console.log("debug1");
         var proximoDia = null ;
         var proximoMes ;
         var proximoAno ;
@@ -65,11 +57,11 @@ setInterval(async() => {
         
         calendario.click();
 
-        console.log("ants while")
+        console.log("ants while");
 
         while(proximoDia == null){
 
-            console.log("depois while")
+            console.log("depois while");
 
             try {
                 proximoDia = document.querySelector('tbody tr td a').innerText;
@@ -97,6 +89,9 @@ setInterval(async() => {
     }
 
     else if(url_atual == url_login){
+
+        // document.querySelector('#email').value = window.localStorage.getItem('email');
+        // document.querySelector('#senha').value = localStorage.getItem('password');
 
             console.log("Estamos na página de login")
 
