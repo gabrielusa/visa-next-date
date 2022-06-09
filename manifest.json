@@ -23,7 +23,7 @@
 
     "action": {
         "default_icon": "128.png",
-        "default_title": "Visa Next Date by GadoBiel",   
+        "default_title": "Clique para abrir opções de usuario",   
         "default_popup": "index.html" 
       }
   }

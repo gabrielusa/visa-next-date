@@ -1,17 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visa Next Date</title>
     <link rel="stylesheet" href="index.css">
-    <!-- <script type="text/javascript" src="content.js"></script> -->
 
 </head>
 <body>
-
     <div class="pop-up">
         <span class="title">
             Visa Next Date 🇺🇸
@@ -20,48 +17,49 @@
             Seja notificado com as melhores datas para o seu agendamento.
         </span>
 
-        <div class="dados">
-
-
-            <div class="esqueda">
-                <span class="text">email:</span>
-                <span class="text">senha:</span>
-                <span class="text">data:</span>
-            </div>
-    
-            <div class="centro">
-
-                <input id="email" class="escreva">
-                <input id="senha" class="escreva" >
-
-                <div class="datas escreva">
-                    <div class="data">
-                        <input id="date-dia" placeholder="dia">
-                    </div>
-                    <div class="data">
-                        <input id="date-mes" placeholder="mes">
-                    </div>
-                    <div class="data">
-                        <input id="date-ano" placeholder="ano">
-                    </div>
-                </div>
-
-            </div>
-    
-            <div class="direita">
-                <button id="btn btn-email">ok</button>
-                <button id="btn btn-senha">ok</button>
-                <button  class="btn btn-date" id="btn-date">ok</button>
-    
-            </div>
-
-            
+        <div class="linha">
+            <span class="text">email:</span>
+            <input id="email" class="escreva" placeholder="digite seu email">
+            <button class="btn" id="btn-email">ok</button>
         </div>
 
+        <div class="linha">
+            <span class="text">senha:</span>
+            <input id="senha" class="escreva" placeholder="digite sua senha">
+            <button class="btn" id="btn-senha">ok</button>
+        </div>
 
-        <span class="subtext" id="subtext">
-            Os dados ficam só na URL em que foi salvo.
-        </span>
+        <div class="linha">
+            <span class="text">data:</span>
+            <div class="datas escreva">
+                <div class="data">
+                    <input id="date-dia" placeholder="dia">
+                </div>
+                <div class="data">
+                    <input id="date-mes" placeholder="mes">
+                </div>
+                <div class="data">
+                    <input id="date-ano" placeholder="ano">
+                </div>
+            </div>
+            <button class="btn btn-date" id="btn-date">ok</button>
+        </div>
+
+        <div class="linha">
+            <span class="text">Ultima data:</span>
+            <span class="text-info" id="ultima-data">xx-xx-xxxx</span>
+        </div>
+
+        <div class="linha">
+            <span class="text">melhor data:</span>
+            <span class="text-info" id="melhor-data">xx-xx-xxxx</span>
+        </div>
+
+        <div class="footer" >
+            <span class="subtext" id="subtext">
+                Os dados ficam só na URL em que foi salvo.
+            </span>
+        </div>
 
 
     </div>
@@ -71,33 +69,41 @@
         let email = document.getElementById('email');
         let btnSenha = document.getElementById('btn-senha');
         let senha = document.getElementById('senha');
+        var subtextStyle = document.getElementById('subtext').style;
+        let btnDate = document.getElementById('btn-date');
 
+
+        // setando valores locais já salvos
         email.value = window.localStorage.getItem('email');
         senha.value = window.localStorage.getItem('password');
-        subtextStyle = document.getElementById('subtext').style;
+        document.querySelector('#date-dia').value = window.localStorage.getItem('diaMarcado');
+        document.querySelector('#date-mes').value = window.localStorage.getItem('mesMarcado');
+        document.querySelector('#date-ano').value = window.localStorage.getItem('anoMarcado');
 
-        if(email.value == ''){
-            email.value = "nenhum email associado nesta página";
-            console.log('oi')
-            subtextStyle.display = "none";
-        }
-        if(senha.value == ''){
-            senha.value = "nenhum email associado nesta página"
-        }
-
-        if(email.value ==! "nenhum email associado nesta página" || email.value ==! '' ){
-            subtextStyle.display = "block";
-        }
 
         btnEmail.onclick = () => {
             window.localStorage.setItem('email', document.querySelector('#email').value);
             document.querySelector('#email').value = window.localStorage.getItem('email');
+            console.log("Um novo valor de email foi associado a esta url")
         }
 
         btnSenha.onclick = () => {
             window.localStorage.setItem('password', document.querySelector('#senha').value);
             document.querySelector('#senha').value = window.localStorage.getItem('password');
+            console.log("Um novo valor de senha foi associado a esta url")
         }
+
+        btnDate.onclick = () => {
+            window.localStorage.setItem('diaMarcado', document.querySelector('#date-dia').value);
+            window.localStorage.setItem('mesMarcado', document.querySelector('#date-mes').value);
+            window.localStorage.setItem('anoMarcado', document.querySelector('#date-ano').value);
+        }
+
+
+
+
+
+
     </script>
 </body>
 </html>
