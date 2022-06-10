@@ -6,13 +6,13 @@ var meuSenha = 'minha_senha12';
 
     // Informe o número do processo, é o número que aparece na sua URL após "/schedule/"
         // Em desenvolvimento!
-var numero_processo = 39894926;
+var numero_processo = 39962141;
 
 // 39894926     conta gabriel
 // 39962141     conta teste
 
     // Você já fez o pagamento da taxa? 1 sim, 2 não (página de agendamento só é liberada após pagamento e marcação).
-var url_agenda_livre = 1;
+var url_agenda_livre = 2;
 
     // infome a data interessante limite (maior data que receberá alertas).
 var diaMarcado = 19;
@@ -90,15 +90,12 @@ setInterval(async() => {
         var proximoAno ;
 
 
-
-        await sleep(3000);
+        
+        var calendario = document.querySelector('#appointments_consulate_appointment_date');
+        calendario.click();
 
         var carregarMais = document.getElementsByClassName('ui-datepicker-next');
-        var calendario = document.querySelector('#appointments_consulate_appointment_date');
 
-        console.log("calendario: ",  calendario)
-        
-        calendario.click();
 
         while(proximoDia == null){
             console.log("primeiro while")
