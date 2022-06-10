@@ -1,10 +1,18 @@
 // INFORME AS VARIÁVEIS:
 
+    // Informe o seu Login e Senha.
+var meuEmail = 'seu_email@hotmail.com';
+var meuSenha = 'minha_senha12';
+
     // Informe o número do processo, é o número que aparece na sua URL após "/schedule/"
+        // Em desenvolvimento!
 var numero_processo = 39894926;
 
+// 39894926     conta gabriel
+// 39962141     conta teste
+
     // Você já fez o pagamento da taxa? 1 sim, 2 não (página de agendamento só é liberada após pagamento e marcação).
-var url_agenda_livre = 2;
+var url_agenda_livre = 1;
 
     // infome a data interessante limite (maior data que receberá alertas).
 var diaMarcado = 19;
@@ -21,10 +29,8 @@ var mesBloqueado = 6;
 var anoBloqueado = 2022;
 
     // escolha a cidade (somente pagina de pagamento).
-var cidade_url_pay= 0;
-
-    // escolha a cidade (somente pagina de reagendamento).
-var cidade_url_pay= 0;
+        // Em desenvolvimento!
+var cidade= 0;
 
         // Brasília = 0
         // Rio de Janeiro = 1
@@ -34,13 +40,11 @@ var cidade_url_pay= 0;
 
 var url_atual = window.location.href;
 var url_login = 'https://ais.usvisa-info.com/pt-br/niv/users/sign_in';
-var url_pay = 'https://ais.usvisa-info.com/pt-br/niv/schedule/39962141/payment';
-var url_agenda = 'https://ais.usvisa-info.com/pt-br/niv/schedule/39894926/appointment';
+var url_pay = `https://ais.usvisa-info.com/pt-br/niv/schedule/${numero_processo}/payment`;
+var url_agenda = `https://ais.usvisa-info.com/pt-br/niv/schedule/${numero_processo}/appointment`;
 
 // função para permitir notificações no navegador, não apague. Se apagar habilite manualmente as notificações.
 Notification.requestPermission(/* opcional: callback */);
-
-
 
 
     // -> INICIO DA FUNÇÃO PRINCIPAL <- //
@@ -85,16 +89,25 @@ setInterval(async() => {
         var proximoMes ;
         var proximoAno ;
 
+
+
+        await sleep(3000);
+
         var carregarMais = document.getElementsByClassName('ui-datepicker-next');
         var calendario = document.querySelector('#appointments_consulate_appointment_date');
+
+        console.log("calendario: ",  calendario)
         
         calendario.click();
 
         while(proximoDia == null){
+            console.log("primeiro while")
             try {
-                proximoDia = document.querySelectorAll('tbody tr td a')[0];
+                proximoDia = document.querySelector('tbody tr td a');
+                console.log("primeiro try, proximoDia: ", proximoDia)
             } catch(error){
                 carregarMais[0].click();
+                console.log("primeiro catch")
             }
         }
 
@@ -342,6 +355,7 @@ function melhorDataPortugues(data){
 function comparaDataCalendario(dia, mes, ano){
     // return 0 para data ruim
     // return 1 para data boa
+    // return 2 para data bloqueada
     
 
     if(anoMarcado < ano){

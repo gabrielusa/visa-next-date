@@ -14,10 +14,6 @@
         "js":["content.js"]
     }],
 
-    "background": {
-        "service_worker": "java.js"
-    },
-
     "permissions": [
         "webRequest",
         "activeTab",
