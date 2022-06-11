@@ -12,7 +12,7 @@ var numero_processo = 39962141;
 // 39962141     conta teste
 
     // Você já fez o pagamento da taxa? 1 sim, 2 não (página de agendamento só é liberada após pagamento e marcação).
-var url_agenda_livre = 2;
+var url_agenda_livre = 1;
 
     // infome a data interessante limite (maior data que receberá alertas).
 var diaMarcado = 19;
@@ -20,23 +20,24 @@ var mesMarcado = 7;
 var anoMarcado = 2023;
 
     // Informe de quanto em quanto tempo o bot recarregará a página.
-       // Valores muito baixos podem causar "TOO MANY REQUEST 429". (recomendo: 61s.)
+       // Valores muito baixos podem causar 429 (TOO MANY REQUEST). (delay recomendado: 61s.)
 var delay = 4; // Em segundos.
 
     // Informe uma data inválida para ser ignorada
-var diaBloqueado = 13;
+var diaBloqueado = 1;
 var mesBloqueado = 6;
-var anoBloqueado = 2022;
+var anoBloqueado = 2023;
 
     // escolha a cidade (somente pagina de pagamento).
         // Em desenvolvimento!
-var cidade= 0;
+var cidade= 3;
+var cidades = ['brasília','Rio de Janeiro','São Paulo','Recife','Porto Alegre'] // NÃO ALTERE
 
         // Brasília = 0
         // Rio de Janeiro = 1
         // São Paulo = 2
         // Recife = 3
-        // PortoAlegre = 4
+        // Porto Alegre = 4
 
 var url_atual = window.location.href;
 var url_login = 'https://ais.usvisa-info.com/pt-br/niv/users/sign_in';
@@ -55,7 +56,7 @@ setInterval(async() => {
 
     if(url_atual == url_pay){
 
-        var proximaData = document.querySelector('tbody .text-right').innerText;
+        var proximaData = document.querySelectorAll('tbody .text-right')[cidade].innerText;
         var ultimaDataVista = window.localStorage.getItem('ultimaDataVista');
 
         console.log("ultimaDataAnotada:", ultimaDataVista );
@@ -66,46 +67,44 @@ setInterval(async() => {
         var compara = comparaDataPortugues(proximaData);
         if(compara == '1'){
             console.log("ta comparando")
-            new Notification(("data melhor: " + proximaData), {
-                body: ("essa é a proxima data definida em Brasília.", proximaData)
+
+            new Notification(("data disponível em "+ cidades[cidade] + ": " + proximaData), {
+                body: ("essa é a proxima data definida em " + cidades[cidade] + ": " + proximaData)
             });
-            // var melhordataPortugues = melhorDataPortugues(proximaData);
-            // if(melhordataPortugues == '1'){
-            //     var aux = lerDataPortugues(proximaData);
-            //     window.localStorage.setItem('melhorDia', aux[0]);
-            //     window.localStorage.setItem('melhorMes', aux[1]);
-            //     window.localStorage.setItem('melhorAno', aux[2]);
-            // }
+
 
         }else{
             console.log("data não interessante")
         }
+
     }
+
     else if(url_atual == url_agenda){
 
         console.log("Estamos na página de Agendamento")
-        
-        var proximoDia = null ;
-        var proximoMes ;
-        var proximoAno ;
-
-
         
         var calendario = document.querySelector('#appointments_consulate_appointment_date');
         calendario.click();
 
         var carregarMais = document.getElementsByClassName('ui-datepicker-next');
 
+        var i = 0;
+        var proximoDia = 'null' ;
+        var proximoMes ;
+        var proximoAno ;
 
-        while(proximoDia == null){
+        while(proximoDia == 'null' && i <= 30 ){
             console.log("primeiro while")
             try {
-                proximoDia = document.querySelector('tbody tr td a');
+                proximoDia = document.querySelector('tbody tr td a').innerText;
                 console.log("primeiro try, proximoDia: ", proximoDia)
             } catch(error){
                 carregarMais[0].click();
                 console.log("primeiro catch")
             }
+            console.log("i: ", i)
+            i++;
+            if(i == 30){console.log("primeiro while entrou em LOOP!!!")}
         }
 
         try {
@@ -127,8 +126,8 @@ setInterval(async() => {
         console.log("compara: ", compara)
         if(compara == '1'){
             console.log("data interessante")
-            new Notification(("data melhor: " + "" + proximoDia + "/" + proximoMes + "/" + proximoAno), {
-                body: ("essa é a proxima data definida em Brasília." + "" + proximoDia + "/" + proximoMes + "/" + proximoAno)
+            new Notification(("data disponível em "+ cidades[cidade] + ": "+ proximoDia + "/" + proximoMes + "/" + proximoAno), {
+                body: ("essa é a proxima data definida em " + cidades[cidade] + ": " + proximoDia + "/" + proximoMes + "/" + proximoAno)
             });
 
         }else if(compara == '2'){ // SIGNIFICA Q A PRIMEIRA DATA É BLOQUEADA
@@ -145,7 +144,7 @@ setInterval(async() => {
                 var compara = comparaDataCalendario(proximoDia, proximoMes, proximoAno);
                 if(compara == '1'){
                     console.log("data interessante")
-                    new Notification(("data melhor: " + "" + proximoDia + "/" + proximoMes + "/" + proximoAno), {
+                    new Notification(("data disponível em "+ cidades[cidade] + ": " + proximoDia + "/" + proximoMes + "/" + proximoAno), {
                         body: ("essa é a proxima data definida em Brasília." + "" + proximoDia + "/" + proximoMes + "/" + proximoAno)
                     });
                 }
@@ -158,8 +157,11 @@ setInterval(async() => {
                 console.log("data não interessante")
                 carregarMais[0].click();
                 carregarMais[0].click();
+
+                proximoDia= 'null';
+                i = 0; 
     
-                while(document.querySelectorAll('tbody tr td a')[0].innerText == null){
+                while(proximoDia == 'null' && i <= 30){
                     console.log('proximo dia: ', proximoDia)
     
                     try {
@@ -171,6 +173,9 @@ setInterval(async() => {
                     }
 
                     console.log('proximo dia2: ', proximoDia)
+
+                    i++;
+                    if(i == 30){console.log("Segundo while entrou em LOOP!!!")}
                 }
         
                 try {
@@ -187,8 +192,8 @@ setInterval(async() => {
                 var compara = comparaDataCalendario(proximoDia, proximoMes, proximoAno);
                 if(compara == '1'){
                     console.log("data interessante")
-                    new Notification(("data melhor: " + "" + proximoDia + "/" + proximoMes + "/" + proximoAno), {
-                        body: ("essa é a proxima data definida em Brasília." + "" + proximoDia + "/" + proximoMes + "/" + proximoAno)
+                    new Notification(("data disponível em "+ cidades[cidade] + ": " + proximoDia + "/" + proximoMes + "/" + proximoAno), {
+                        body: ("essa é a proxima data definida em " + cidades[cidade] + ": " + proximoDia + "/" + proximoMes + "/" + proximoAno)
                     });
                 }
             }
@@ -314,38 +319,6 @@ function comparaDataPortugues(data){
     else{
         console.log("data mais próxima")
         return '1'
-    }
-}
-
-function melhorDataPortugues(data){
-    // return 0 para data ruim
-    // return 1 para data boa
-
-    let proximaData = lerDataPortugues(data);
-    var dia = proximaData[0];
-    var mes = proximaData[1];
-    var ano = proximaData[2];
-    var melhorDia = window.localStorage.getItem('melhorDia');
-    var melhorMes = window.localStorage.getItem('melhorMes');
-    var melhorAno = window.localStorage.getItem('melhorAno');
-    
-    console.log("dia: ", dia, "mes: ", mes, "ano", ano);
-
-    if(melhorAno > ano){
-        console.log("melhor data por ano")
-        return '1'
-    }
-    else if(melhorAno == ano && melhorMes > mes){
-        console.log("melhor data por mes")
-        return '1'
-    }
-    else if(melhorAno == ano && melhorMes == mes && melhorDia > dia){
-        console.log("melhor data por dia")
-        return '1'
-    }
-    else{
-        console.log("n é a melhor data")
-        return '0'
     }
 }
 
