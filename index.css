@@ -2,9 +2,18 @@ body{
     background-color: #666;
 }
 
+.alert{
+    background-color: white;
+    border-radius: 25px;
+    align-items: center;
+
+    padding: 15px;
+    margin-inline:60px ;
+}
+
 .text-red{
-    font-size: 14px;
-    color: red;
+    font-size: 12px;
+    color: rgb(230, 144, 15);
 }
 
 .pop-up{
@@ -62,6 +71,15 @@ padding: 10px;
     border: none;
     background-color: #666;
     color: white;
+}
+
+.btnReload{
+    cursor: pointer;
+    width: 60px;
+    border: none;
+    background-color: #666;
+    color: white;
+
 }
 
 .btn2:hover{
