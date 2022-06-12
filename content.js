@@ -20,7 +20,7 @@ var anoMarcado = 2023;
 
     // Informe de quanto em quanto tempo o bot recarregará a página.
        // Valores muito baixos podem causar 429 (TOO MANY REQUEST). (delay recomendado: 61s.)
-var delay = 4; // Em segundos.
+var delay = 61; // Em segundos.
 
     // Informe uma data inválida para ser ignorada
 var diaBloqueado = 1;
@@ -28,7 +28,7 @@ var mesBloqueado = 6;
 var anoBloqueado = 2023;
 
     // escolha a cidade à ser observada.
-var cidade= 1;
+var cidade= 0;
 var cidades = ['brasília','Rio de Janeiro','São Paulo','Recife','Porto Alegre'] // NÃO ALTERE
 
         // Brasília =       [0]
@@ -36,6 +36,9 @@ var cidades = ['brasília','Rio de Janeiro','São Paulo','Recife','Porto Alegre'
         // São Paulo =      [2]
         // Recife =         [3]
         // Porto Alegre =   [4]
+
+    // reload (f5) -> necessário para puxar informações novas
+var reload = 1; // 0 = desligado, 1 = ligado
 
 var url_atual = window.location.href;
 var url_login = 'https://ais.usvisa-info.com/pt-br/niv/users/sign_in';
@@ -49,7 +52,11 @@ Notification.requestPermission(/* opcional: callback */);
     // -> INICIO DA FUNÇÃO PRINCIPAL <- //
 
 setInterval(async() => {
-    // await window.location.reload();
+
+    if( reload == 1){
+        await window.location.reload();
+    }
+
     console.log("url atual:", url_atual);
 
     if(url_atual == url_pay){
