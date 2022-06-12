@@ -5,8 +5,7 @@ var meuEmail = 'seu_email@hotmail.com';
 var meuSenha = 'minha_senha12';
 
     // Informe o número do processo, é o número que aparece na sua URL após "/schedule/"
-        // Em desenvolvimento!
-var numero_processo = 39962141;
+var numero_processo = 39894926;
 
 // 39894926     conta gabriel
 // 39962141     conta teste
@@ -28,16 +27,15 @@ var diaBloqueado = 1;
 var mesBloqueado = 6;
 var anoBloqueado = 2023;
 
-    // escolha a cidade (somente pagina de pagamento).
-        // Em desenvolvimento!
-var cidade= 3;
+    // escolha a cidade à ser observada.
+var cidade= 1;
 var cidades = ['brasília','Rio de Janeiro','São Paulo','Recife','Porto Alegre'] // NÃO ALTERE
 
-        // Brasília = 0
-        // Rio de Janeiro = 1
-        // São Paulo = 2
-        // Recife = 3
-        // Porto Alegre = 4
+        // Brasília =       [0]
+        // Rio de Janeiro = [1]
+        // São Paulo =      [2]
+        // Recife =         [3]
+        // Porto Alegre =   [4]
 
 var url_atual = window.location.href;
 var url_login = 'https://ais.usvisa-info.com/pt-br/niv/users/sign_in';
@@ -82,6 +80,28 @@ setInterval(async() => {
     else if(url_atual == url_agenda){
 
         console.log("Estamos na página de Agendamento")
+        console.log("cidade de:", cidade)
+
+            if(cidade == 1){
+                console.log("cidade de 1")
+                document.querySelector('#appointments_consulate_appointment_facility_id').value = 55;
+            }
+            if(cidade == 2){
+                console.log("cidade de 2")
+                document.querySelector('#appointments_consulate_appointment_facility_id').value = 56;
+            }
+            if(cidade == 3){
+                console.log("cidade de 3")
+                document.querySelector('#appointments_consulate_appointment_facility_id').value = 57;
+            }
+            if(cidade == 4){
+                console.log("cidade de 4")
+                document.querySelector('#appointments_consulate_appointment_facility_id').value = 128;
+            }
+        
+            await sleep(1000);
+            console.log("cidade dev: ", document.querySelector('#appointments_consulate_appointment_facility_id').value)
+
         
         var calendario = document.querySelector('#appointments_consulate_appointment_date');
         calendario.click();
@@ -354,35 +374,6 @@ function comparaDataCalendario(dia, mes, ano){
     }
 }
 
-function melhorDataCalendario(dia, mes, ano){
-    // return 0 para data ruim
-    // return 1 para data boa
-
-    var melhorDia = window.localStorage.getItem('melhorDia');
-    var melhorMes = window.localStorage.getItem('melhorMes');
-    var melhorAno = window.localStorage.getItem('melhorAno');
-    
-    console.log("dia: ", dia, "mes: ", mes, "ano", ano);
-
-    if(melhorAno > ano){
-        console.log("melhor data por ano")
-        return '1'
-    }
-    else if(melhorAno == ano && melhorMes > mes){
-        console.log("melhor data por mes")
-        return '1'
-    }
-    else if(melhorAno == ano && melhorMes == mes && melhorDia > dia){
-        console.log("melhor data por dia")
-        return '1'
-    }
-    else{
-        console.log("n é a melhor data")
-        return '0'
-    }
-}
-
 function sleep(ms) {
 	return new Promise(resolve => setTimeout(resolve, ms));
 }
-

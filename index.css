@@ -2,6 +2,11 @@ body{
     background-color: #666;
 }
 
+.text-red{
+    font-size: 14px;
+    color: red;
+}
+
 .pop-up{
     background-color: #f4f4f4;
     /* border: 8px solid #666; */
