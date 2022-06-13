@@ -14,8 +14,8 @@ var numero_processo = 39894926;
 var url_agenda_livre = 1;
 
     // infome a data interessante limite (maior data que receberá alertas).
-var diaMarcado = 19;
-var mesMarcado = 7;
+var diaMarcado = 1;
+var mesMarcado = 1;
 var anoMarcado = 2023;
 
     // Informe de quanto em quanto tempo o bot recarregará a página.
@@ -25,7 +25,7 @@ var delay = 61; // Em segundos.
     // Informe uma data inválida para ser ignorada
 var diaBloqueado = 1;
 var mesBloqueado = 6;
-var anoBloqueado = 2023;
+var anoBloqueado = 2025;
 
     // escolha a cidade à ser observada.
 var cidade= 0;
