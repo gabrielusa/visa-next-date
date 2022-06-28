@@ -1,8 +1,8 @@
 // INFORME AS VARIÁVEIS:
 
     // Informe o seu Login e Senha.
-var meuEmail = 'seu_email@hotmail.com';
-var meuSenha = 'minha_senha12';
+// var meuEmail = 'seuemail@hotmail.com';
+// var meuSenha = 'minha_senha12';
 
     // Informe o número do processo, é o número que aparece na sua URL após "/schedule/"
 var numero_processo = 39894926;
@@ -14,13 +14,13 @@ var numero_processo = 39894926;
 var url_agenda_livre = 1;
 
     // infome a data interessante limite (maior data que receberá alertas).
-var diaMarcado = 1;
-var mesMarcado = 1;
-var anoMarcado = 2023;
+var diaMarcado = 24;
+var mesMarcado = 5;
+var anoMarcado = 2024;
 
     // Informe de quanto em quanto tempo o bot recarregará a página.
        // Valores muito baixos podem causar 429 (TOO MANY REQUEST). (delay recomendado: 61s.)
-var delay = 61; // Em segundos.
+var delay = 5; // Em segundos.
 
     // Informe uma data inválida para ser ignorada
 var diaBloqueado = 1;
@@ -38,7 +38,7 @@ var cidades = ['brasília','Rio de Janeiro','São Paulo','Recife','Porto Alegre'
         // Porto Alegre =   [4]
 
     // reload (f5) -> necessário para puxar informações novas
-var reload = 1; // 0 = desligado, 1 = ligado
+var reload = 0; // 0 = desligado, 1 = ligado
 
 var url_atual = window.location.href;
 var url_login = 'https://ais.usvisa-info.com/pt-br/niv/users/sign_in';
@@ -121,13 +121,13 @@ setInterval(async() => {
         var proximoAno ;
 
         while(proximoDia == 'null' && i <= 30 ){
-            console.log("primeiro while")
+            // console.log("primeiro while")
             try {
                 proximoDia = document.querySelector('tbody tr td a').innerText;
-                console.log("primeiro try, proximoDia: ", proximoDia)
+                // console.log("primeiro try, proximoDia: ", proximoDia)
             } catch(error){
                 carregarMais[0].click();
-                console.log("primeiro catch")
+                // console.log("primeiro catch")
             }
             console.log("i: ", i)
             i++;
@@ -158,7 +158,7 @@ setInterval(async() => {
             });
 
         }else if(compara == '2'){ // SIGNIFICA Q A PRIMEIRA DATA É BLOQUEADA
-            console.log("entrou na compara 2")
+            // console.log("entrou na compara 2")
             console.log("data entrando na compara 2: ", document.querySelectorAll('tbody tr td a')[1].innerText )
 
             try { // SE HOUVER UM SEGUNDO VALOR BOM EM SEQUENCIA DISPARA:
@@ -179,7 +179,7 @@ setInterval(async() => {
                 
             } catch (error) { // SE NAO HOUVER UM SEGUNDO VALOR BOM EM SEQUENCIA DISPARA:
 
-                console.log("entrou na compara 2 e no if")
+                // console.log("entrou na compara 2 e no if")
 
                 console.log("data não interessante")
                 carregarMais[0].click();
@@ -239,8 +239,8 @@ setInterval(async() => {
                 window.localStorage.setItem('password', password);
             }
 
-            console.log('Email Salvo: ' + localStorage.getItem('email'));
-            console.log('Senha Salva: ' + localStorage.getItem('password'));
+            // console.log('Email Salvo: ' + localStorage.getItem('email'));
+            // console.log('Senha Salva: ' + localStorage.getItem('password'));
 
             document.getElementById('user_email').value = localStorage.getItem('email');
             document.getElementById('user_password').value = localStorage.getItem('password');
