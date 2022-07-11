@@ -1,8 +1,8 @@
 // INFORME AS VARIÁVEIS:
 
     // Informe o seu Login e Senha.
-// var meuEmail = 'seuemail@hotmail.com';
-// var meuSenha = 'minha_senha12';
+var meuEmail = 'seuemail@hotmail.com';
+var meuSenha = 'minha_senha12';
 
     // Informe o número do processo, é o número que aparece na sua URL após "/schedule/"
 var numero_processo = 39894926;
@@ -231,19 +231,20 @@ setInterval(async() => {
 
             console.log("Estamos na página de login")
 
-            if(window.localStorage.getItem('email') == null || window.localStorage.getItem('password') == null) {
-                let email = prompt('Digite seu email: ');
-                window.localStorage.setItem('email', email);
+            // modulo para gravar dados na localstorage
+                // if(window.localStorage.getItem('email') == null || window.localStorage.getItem('password') == null) {
+                //     let email = prompt('Digite seu email: ');
+                //     window.localStorage.setItem('email', email);
 
-                let password = prompt('Digite sua senha: ');
-                window.localStorage.setItem('password', password);
-            }
+                //     let password = prompt('Digite sua senha: ');
+                //     window.localStorage.setItem('password', password);
+                // }
 
-            // console.log('Email Salvo: ' + localStorage.getItem('email'));
-            // console.log('Senha Salva: ' + localStorage.getItem('password'));
+                // console.log('Email Salvo: ' + localStorage.getItem('email'));
+                // console.log('Senha Salva: ' + localStorage.getItem('password'));
 
-            document.getElementById('user_email').value = localStorage.getItem('email');
-            document.getElementById('user_password').value = localStorage.getItem('password');
+            document.getElementById('user_email').value = meuEmail;
+            document.getElementById('user_password').value = meuSenha;
 
             let setID = document.getElementById('policy_confirmed');
             setID.checked = true;
