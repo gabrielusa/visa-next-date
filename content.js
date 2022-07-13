@@ -1,17 +1,14 @@
 // INFORME AS VARIÁVEIS:
 
     // Informe o seu Login e Senha.
-var meuEmail = 'seuemail@hotmail.com';
-var meuSenha = 'minha_senha12';
+var meuEmail = 'tenhofome03@gmail.com';
+var meuSenha = 'tenhofome12';
 
-    // Informe o número do processo, é o número que aparece na sua URL após "/schedule/"
-var numero_processo = 39894926;
-
-// 39894926     conta gabriel
-// 39962141     conta teste
+    // Informe o número do processo, é o número que aparece na sua URL quando você logo no site ( geralmente após "/schedule/",  nunca após "/groups" )
+var numero_processo = 39962141;
 
     // Você já fez o pagamento da taxa? 1 sim, 2 não (página de agendamento só é liberada após pagamento e marcação).
-var url_agenda_livre = 1;
+var url_agenda_livre = 2;
 
     // infome a data interessante limite (maior data que receberá alertas).
 var diaMarcado = 24;
@@ -38,7 +35,7 @@ var cidades = ['brasília','Rio de Janeiro','São Paulo','Recife','Porto Alegre'
         // Porto Alegre =   [4]
 
     // reload (f5) -> necessário para puxar informações novas
-var reload = 0; // 0 = desligado, 1 = ligado
+var reload = 1; // 0 = desligado, 1 = ligado
 
 var url_atual = window.location.href;
 var url_login = 'https://ais.usvisa-info.com/pt-br/niv/users/sign_in';
