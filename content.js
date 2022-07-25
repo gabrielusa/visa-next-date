@@ -1,23 +1,23 @@
 // INFORME AS VARIÁVEIS:
 
-    // Informe o seu Login e Senha.
-var meuEmail = 'tenhofome03@gmail.com';
-var meuSenha = 'tenhofome12';
+// Informe o seu Login e Senha.
+var meuEmail = 'com';
+var meuSenha = 'V1';
 
     // Informe o número do processo, é o número que aparece na sua URL quando você logo no site ( geralmente após "/schedule/",  nunca após "/groups" )
-var numero_processo = 39962141;
+var numero_processo = 41597324;
 
     // Você já fez o pagamento da taxa? 1 sim, 2 não (página de agendamento só é liberada após pagamento e marcação).
-var url_agenda_livre = 2;
+var url_agenda_livre = 1;
 
     // infome a data interessante limite (maior data que receberá alertas).
-var diaMarcado = 24;
-var mesMarcado = 5;
-var anoMarcado = 2024;
+var diaMarcado = 01;
+var mesMarcado = 01;
+var anoMarcado = 2023;
 
     // Informe de quanto em quanto tempo o bot recarregará a página.
-       // Valores muito baixos podem causar 429 (TOO MANY REQUEST). (delay recomendado: 61s.)
-var delay = 10; // Em segundos.
+        // Valores muito baixos podem causar 429 (TOO MANY REQUEST). (delay recomendado: 61s.)
+var delay = 61; // Em segundos.
 
     // Informe uma data inválida para ser ignorada
 var diaBloqueado = 1;
@@ -41,6 +41,7 @@ var url_atual = window.location.href;
 var url_login = 'https://ais.usvisa-info.com/pt-br/niv/users/sign_in';
 var url_pay = `https://ais.usvisa-info.com/pt-br/niv/schedule/${numero_processo}/payment`;
 var url_agenda = `https://ais.usvisa-info.com/pt-br/niv/schedule/${numero_processo}/appointment`;
+var url_maldosa = `https://ais.usvisa-info.com/pt-br/niv/schedule/${numero_processo}/appointment/days/54.json?appointments[expedite]=false`;
 
 // função para permitir notificações no navegador, não apague. Se apagar habilite manualmente as notificações.
 Notification.requestPermission(/* opcional: callback */);
@@ -81,10 +82,39 @@ setInterval(async() => {
 
     }
 
+    else if(url_atual == url_maldosa){
+
+        var texto = document.getElementsByTagName('pre');
+        const obj = JSON.parse(texto[0].innerHTML);
+
+        console.log("obj: "+ obj[0])
+
+        var compara = comparaDataMaldosa(obj[0].date);
+
+        console.log('FALA CMG')
+
+        if(compara == '1'){
+            console.log("ta comparando")
+
+            new Notification(("data disponível em "+ cidades[cidade] + ": " + obj[0].date), {
+                body: ("essa é a proxima data definida em " + cidades[cidade] + ": " + obj[0].date)
+            });
+
+        }else{
+            console.log("data não interessante")
+        }
+
+    }
+
     else if(url_atual == url_agenda){
+
+        window.location.href = url_maldosa;
 
         console.log("Estamos na página de Agendamento")
         console.log("cidade de:", cidade)
+
+        document.querySelector('#appointments_consulate_appointment_facility_id').value = 54;
+
 
             if(cidade == 1){
                 console.log("cidade de 1")
@@ -102,9 +132,11 @@ setInterval(async() => {
                 console.log("cidade de 4")
                 document.querySelector('#appointments_consulate_appointment_facility_id').value = 128;
             }
-        
-            await sleep(1000);
-            console.log("cidade dev: ", document.querySelector('#appointments_consulate_appointment_facility_id').value)
+
+
+        document.getElementById('consulate_date_time').style = "display: block;"
+        await sleep(1000);
+        console.log("cidade dev: ", document.querySelector('#appointments_consulate_appointment_facility_id').value)
 
         
         var calendario = document.querySelector('#appointments_consulate_appointment_date');
@@ -260,7 +292,7 @@ setInterval(async() => {
             if(url_agenda_livre == 1){
                 console.log("Vamos para a página de Agendamento")
                 await sleep(900);
-                window.location.href = url_agenda;
+                window.location.href = url_maldosa;
             }else{
                 console.log("Vamos para a página de Pagamento")
                 await sleep(900);
@@ -314,6 +346,51 @@ function lerDataPortugues(data) {
     return [dia, mes, ano]
 }
 
+
+function lerDataMaldosa(data) {
+    console.log("data é essa: "+ data)
+    var dia = data[8]+data[9];
+    console.log("data dia é essa: "+ dia)
+    var ano = data[0]+data[1]+data[2]+data[3];
+    var mes = data[5]+data[6];
+
+    return [dia, mes, ano]
+}
+
+function comparaDataMaldosa(data){
+    // return 0 para data ruim
+    // return 1 para data boa
+
+    let proximaData = lerDataMaldosa(data);
+    var dia = proximaData[0];
+    var mes = proximaData[1];
+    var ano = proximaData[2];
+
+    if( dia == diaBloqueado && mes == mesBloqueado && ano == anoBloqueado ){
+        console.log("data bloqueada")
+        return '0'
+    }
+    else if(anoMarcado < ano){
+        console.log("Ano superior")
+        return '0'
+    }
+    else if(anoMarcado == ano && mesMarcado < mes){
+        console.log("mes superior")
+        return '0'
+    }
+    else if(anoMarcado == ano && mesMarcado == mes && diaMarcado < dia){
+        console.log("dia superior")
+        return '0'
+    }
+    else if((anoMarcado == ano && mesMarcado == mes && diaMarcado == dia)  || ( anoBloqueado == ano && mesBloqueado == mes && diaBloqueado == dia )  ){
+        console.log("dia igual ou bloqueado")
+        return '0'
+    }
+    else{
+        console.log("data mais próxima")
+        return '1'
+    }
+}
 
 function comparaDataPortugues(data){
     // return 0 para data ruim
