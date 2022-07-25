@@ -17,7 +17,7 @@ var anoMarcado = 2024;
 
     // Informe de quanto em quanto tempo o bot recarregará a página.
        // Valores muito baixos podem causar 429 (TOO MANY REQUEST). (delay recomendado: 61s.)
-var delay = 5; // Em segundos.
+var delay = 10; // Em segundos.
 
     // Informe uma data inválida para ser ignorada
 var diaBloqueado = 1;
