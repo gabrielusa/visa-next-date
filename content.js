@@ -1,8 +1,8 @@
 // INFORME AS VARIÁVEIS:
 
 // Informe o seu Login e Senha.
-var meuEmail = 'com';
-var meuSenha = 'V1';
+var meuEmail = 'gabryellagrigaitis@gmail.com';
+var meuSenha = 'Gkda2001';
 
     // Informe o número do processo, é o número que aparece na sua URL quando você logo no site ( geralmente após "/schedule/",  nunca após "/groups" )
 var numero_processo = 41597324;
@@ -17,9 +17,9 @@ var anoMarcado = 2023;
 
     // Informe de quanto em quanto tempo o bot recarregará a página.
         // Valores muito baixos podem causar 429 (TOO MANY REQUEST). (delay recomendado: 61s.)
-var delay = 61; // Em segundos.
+var delay = 4; // Em segundos.
 
-    // Informe uma data inválida para ser ignorada
+    // Informe uma data para ser ignorada
 var diaBloqueado = 1;
 var mesBloqueado = 6;
 var anoBloqueado = 2025;
@@ -28,11 +28,21 @@ var anoBloqueado = 2025;
 var cidade= 0;
 var cidades = ['brasília','Rio de Janeiro','São Paulo','Recife','Porto Alegre'] // NÃO ALTERE
 
-        // Brasília =       [0]
-        // Rio de Janeiro = [1]
-        // São Paulo =      [2]
-        // Recife =         [3]
-        // Porto Alegre =   [4]
+var cidadeAux= 54;
+if(cidade == 1){
+    cidadeAux = 55;
+}else if(cidade == 2){
+    cidadeAux = 56;
+}else if(cidade == 3){
+    cidadeAux = 57;
+}else if(cidade == 4){
+    cidadeAux = 128;
+}
+        // Brasília =       [0] -> 54
+        // Rio de Janeiro = [1] -> 55
+        // São Paulo =      [2] -> 56
+        // Recife =         [3] -> 57
+        // Porto Alegre =   [4] -> 128
 
     // reload (f5) -> necessário para puxar informações novas
 var reload = 1; // 0 = desligado, 1 = ligado
@@ -41,7 +51,7 @@ var url_atual = window.location.href;
 var url_login = 'https://ais.usvisa-info.com/pt-br/niv/users/sign_in';
 var url_pay = `https://ais.usvisa-info.com/pt-br/niv/schedule/${numero_processo}/payment`;
 var url_agenda = `https://ais.usvisa-info.com/pt-br/niv/schedule/${numero_processo}/appointment`;
-var url_maldosa = `https://ais.usvisa-info.com/pt-br/niv/schedule/${numero_processo}/appointment/days/54.json?appointments[expedite]=false`;
+var url_maldosa = `https://ais.usvisa-info.com/pt-br/niv/schedule/${numero_processo}/appointment/days/${cidadeAux}.json?appointments[expedite]=false`;
 
 // função para permitir notificações no navegador, não apague. Se apagar habilite manualmente as notificações.
 Notification.requestPermission(/* opcional: callback */);
