@@ -1,11 +1,11 @@
 // INFORME AS VARIÁVEIS:
 
 // Informe o seu Login e Senha.
-var meuEmail = 'gabryellagrigaitis@gmail.com';
-var meuSenha = 'Gkda2001';
+var meuEmail = 'g@gmail.com';
+var meuSenha = 'G1';
 
     // Informe o número do processo, é o número que aparece na sua URL quando você logo no site ( geralmente após "/schedule/",  nunca após "/groups" )
-var numero_processo = 41597324;
+var numero_processo = 42235188;
 
     // Você já fez o pagamento da taxa? 1 sim, 2 não (página de agendamento só é liberada após pagamento e marcação).
 var url_agenda_livre = 1;
@@ -17,7 +17,7 @@ var anoMarcado = 2023;
 
     // Informe de quanto em quanto tempo o bot recarregará a página.
         // Valores muito baixos podem causar 429 (TOO MANY REQUEST). (delay recomendado: 61s.)
-var delay = 4; // Em segundos.
+var delay = 60; // Em segundos.
 
     // Informe uma data para ser ignorada
 var diaBloqueado = 1;
@@ -52,6 +52,7 @@ var url_login = 'https://ais.usvisa-info.com/pt-br/niv/users/sign_in';
 var url_pay = `https://ais.usvisa-info.com/pt-br/niv/schedule/${numero_processo}/payment`;
 var url_agenda = `https://ais.usvisa-info.com/pt-br/niv/schedule/${numero_processo}/appointment`;
 var url_maldosa = `https://ais.usvisa-info.com/pt-br/niv/schedule/${numero_processo}/appointment/days/${cidadeAux}.json?appointments[expedite]=false`;
+
 
 // função para permitir notificações no navegador, não apague. Se apagar habilite manualmente as notificações.
 Notification.requestPermission(/* opcional: callback */);
